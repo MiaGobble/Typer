@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[72],{4410:e=>{e.exports=JSON.parse('{"sourceUrl":"https://github.com/MiaGobble/Typer/blob/main","baseUrl":"/Typer/","classOrder":[],"apiCategories":[]}')}}]);
