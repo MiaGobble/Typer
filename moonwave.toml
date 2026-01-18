@@ -4,6 +4,8 @@ classOrder = []
 
 [docusaurus]
 # favicon = ""
+url = "https://typer.igottic.com"
+baseUrl = "/"
 
 [footer]
 copyright = "Copyright © 2026 Mia Gobble"
