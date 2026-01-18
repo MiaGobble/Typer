@@ -3,7 +3,7 @@ changelog = false
 classOrder = []
 
 [docusaurus]
-favicon = ""
+# favicon = ""
 
 [footer]
 copyright = "Copyright © 2026 Mia Gobble"
