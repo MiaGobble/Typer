@@ -2,7 +2,7 @@
 name: publish-docs
 on:
   push:
-    branches: ["main"]
+    branches: ["gh-pages"]
 jobs:
   status:
     runs-on: ubuntu-latest
