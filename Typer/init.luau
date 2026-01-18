@@ -162,7 +162,7 @@ end) -- Prints "Uh oh!"
 ```
 
 @param ... any -- The arguments to be checked
-@return ExpectInstance -- The table of methods to be called back, each returning itself
+@return ExpectInstance -- The table of methods to be called back, each returning itself 
 ]=]
 
 function Typer.Expect(... : any)
