@@ -2,7 +2,7 @@
 name: publish-docs
 on:
   push:
-    branches: ["gh-pages"]
+    branches: ["main"]
 jobs:
   status:
     runs-on: ubuntu-latest
@@ -18,6 +18,6 @@ jobs:
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           git config --global user.email "support+actions@github.com"
           git config --global user.name "github-actions-bot"
-          moonwave build --publish
+          moonwave build --publish --code Typer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
