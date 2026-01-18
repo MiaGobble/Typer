@@ -1,0 +1,9 @@
+gitSourceBranch = "main"
+changelog = false
+classOrder = []
+
+[docusaurus]
+favicon = ""
+
+[footer]
+copyright = "Copyright © 2026 Mia Gobble"
