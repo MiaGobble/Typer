@@ -1,25 +1,25 @@
 --[=[
-@class Typer
+	@class Typer
 
-Strict typechecking in runtime implementation for Roblox.
+	Strict typechecking in runtime implementation for Roblox.
 ]=]
 
 local Typer = {}
 
 --[=[
-Wraps a function so that all parameters and return values are matched to the correct types.
+	Wraps a function so that all parameters and return values are matched to the correct types.
 
-```lua
-local ExampleStaticFunction = Typer.Static(function(Foo : number, Bar : string)
-	return `{Foo} and {Bar}`, {Foo = Foo, Bar = Bar}
-end).WithParameterTypes("number", "string").WithReturnTypes("string", "table").Asserted()
+	```lua
+	local ExampleStaticFunction = Typer.Static(function(Foo : number, Bar : string)
+		return `{Foo} and {Bar}`, {Foo = Foo, Bar = Bar}
+	end).WithParameterTypes("number", "string").WithReturnTypes("string", "table").Asserted()
 
-local Value0, Value1 = ExampleStaticFunction(10, "Hello!") -- Does not error
-local Value2, Value3 = ExampleStaticFunction({}, true) -- Errors
-```
+	local Value0, Value1 = ExampleStaticFunction(10, "Hello!") -- Does not error
+	local Value2, Value3 = ExampleStaticFunction({}, true) -- Errors
+	```
 
-@param CallbackFunction (any?) -> any? -- The wrapped function
-@return StaticFunction
+	@param CallbackFunction (any?) -> any? -- The wrapped function
+	@return StaticFunction
 ]=]
 
 function Typer.Static(CallbackFunction : (any?) -> any?)
@@ -69,17 +69,17 @@ function Typer.Static(CallbackFunction : (any?) -> any?)
 end
 
 --[=[
-Checks if a value is of a certain type, allowing multiple types
+	Checks if a value is of a certain type, allowing multiple types
 
-```lua
-local MyValue = "Hello, world!"
+	```lua
+	local MyValue = "Hello, world!"
 
-Typer.Cast(MyValue)("number", "string") -- No error
-Typer.Cast(MyValue)("table") -- Error
-```
+	Typer.Cast(MyValue)("number", "string") -- No error
+	Typer.Cast(MyValue)("table") -- Error
+	```
 
-@param Value any -- The cast value
-@return (... : string) : any -- The casting method
+	@param Value any -- The cast value
+	@return (... : string) : any -- The casting method
 ]=]
 
 function Typer.Cast(Value : any) : () -> any
@@ -93,21 +93,21 @@ function Typer.Cast(Value : any) : () -> any
 end
 
 --[=[
-Checks if two values are of the same type, and returns a boolean based on whether they are the same value as well.
+	Checks if two values are of the same type, and returns a boolean based on whether they are the same value as well.
 
-```lua
-local Value0 = Typer.CastEq(1, 2) -- No error
-print(Value0) -- Prints "false"
+	```lua
+	local Value0 = Typer.CastEq(1, 2) -- No error
+	print(Value0) -- Prints "false"
 
-local Value1 = Typer.CastEq("Foo", "Foo") -- No error
-print(Value1) -- Prints "true"
+	local Value1 = Typer.CastEq("Foo", "Foo") -- No error
+	print(Value1) -- Prints "true"
 
-local Value2 = Typer.CastEq(1, "Foo") -- Error
-```
+	local Value2 = Typer.CastEq(1, "Foo") -- Error
+	```
 
-@param Value0 -- The first value for comparison
-@param Value1 -- The second value for comparison
-@return boolean -- Whether the values are the same
+	@param Value0 -- The first value for comparison
+	@param Value1 -- The second value for comparison
+	@return boolean -- Whether the values are the same
 ]=]
 
 function Typer.CastEq(Value0 : any, Value1 : any)
@@ -119,15 +119,15 @@ function Typer.CastEq(Value0 : any, Value1 : any)
 end
 
 --[=[
-Throws an error if inputted types do not match inputted argments in order.
+	Throws an error if inputted types do not match inputted argments in order.
 
-```lua
-Typer.TupleAssertion("number", "boolean", "string")(1, true, "Alo") -- No error
-Typer.TupleAssertion("boolean", "table")(1, 2) -- Throws error
-```
+	```lua
+	Typer.TupleAssertion("number", "boolean", "string")(1, true, "Alo") -- No error
+	Typer.TupleAssertion("boolean", "table")(1, 2) -- Throws error
+	```
 
-@param ... string -- The inputted types, in order
-@return (... any) -- The function used to check arguments
+	@param ... string -- The inputted types, in order
+	@return (... any) -- The function used to check arguments
 ]=]
 
 function Typer.TupleAssertion(... : string)
@@ -145,24 +145,24 @@ function Typer.TupleAssertion(... : string)
 end
 
 --[=[
-A wrapper for Typer.TupleAssertion, allowing callbacks for different outcomes.
+	A wrapper for Typer.TupleAssertion, allowing callbacks for different outcomes.
 
-```lua
-Typer.Expect(1, 2, 3).ToBe("number", "number", "number").AndIfNot(function()
-	print("Uh oh!")
-end).AndIfSo(function()
-	print("Yay!")
-end) -- Prints "Yay!"
+	```lua
+	Typer.Expect(1, 2, 3).ToBe("number", "number", "number").AndIfNot(function()
+		print("Uh oh!")
+	end).AndIfSo(function()
+		print("Yay!")
+	end) -- Prints "Yay!"
 
-Typer.Expect(true, false, true).ToBe("number", "number", "number").AndIfNot(function()
-	print("Uh oh!")
-end).AndIfSo(function()
-	print("Yay!")
-end) -- Prints "Uh oh!"
-```
+	Typer.Expect(true, false, true).ToBe("number", "number", "number").AndIfNot(function()
+		print("Uh oh!")
+	end).AndIfSo(function()
+		print("Yay!")
+	end) -- Prints "Uh oh!"
+	```
 
-@param ... any -- The arguments to be checked
-@return ExpectInstance -- The table of methods to be called back, each returning itself 
+	@param ... any -- The arguments to be checked
+	@return ExpectInstance -- The table of methods to be called back, each returning itself 
 ]=]
 
 function Typer.Expect(... : any)
@@ -201,30 +201,30 @@ function Typer.Expect(... : any)
 end
 
 --[=[
-Creates a proxy table that allows access to values stored in it, but does not allow edits to values already declared.
-It also can be called like a function with a command indicator. Commands are: DumpAll, DumpValue, PrintAll, PrintValue.
+	Creates a proxy table that allows access to values stored in it, but does not allow edits to values already declared.
+	It also can be called like a function with a command indicator. Commands are: DumpAll, DumpValue, PrintAll, PrintValue.
 
-```lua
-local Environment = Typer.Env()
+	```lua
+	local Environment = Typer.Env()
 
-Environment.Foo = 5
-Environment.Bar = 10
+	Environment.Foo = 5
+	Environment.Bar = 10
 
-print(Environment.Foo) -- Prints "5"
-print(Environment.Bar) -- Prints "10"
-print(Environment.DoesntExist) -- Prints nil and throws warning
+	print(Environment.Foo) -- Prints "5"
+	print(Environment.Bar) -- Prints "10"
+	print(Environment.DoesntExist) -- Prints nil and throws warning
 
-Environment("DumpAll") -- Dumps all values, turning them to nil
+	Environment("DumpAll") -- Dumps all values, turning them to nil
 
-Environment.Foo = 5
+	Environment.Foo = 5
 
-print(Environment.Foo) -- Prints "5"
-print(Environment.Bar) -- Prints nil and throws warning
+	print(Environment.Foo) -- Prints "5"
+	print(Environment.Bar) -- Prints nil and throws warning
 
-Environment.Foo = 10 -- Throws error since it already exists
-```
+	Environment.Foo = 10 -- Throws error since it already exists
+	```
 
-@return Environment -- The created proxy table
+	@return Environment -- The created proxy table
 ]=]
 
 function Typer.Env() : typeof(setmetatable({},{}))
